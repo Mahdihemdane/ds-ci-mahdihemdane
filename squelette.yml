@@ -1,0 +1,40 @@
+name: Build, Push and Deploy DS to DockerHub
+
+on:
+  # À compléter (déclencheurs)
+
+env:
+  # À compléter avec vos secrets DockerHub
+
+jobs:
+
+  build:
+    name: Build and Push Images to DockerHub
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code (à compléter)
+
+      # Installer Java (à compléter)
+
+      # Se connecter à DockerHub (à compléter)
+
+      # Build API Gateway (à compléter)
+      # working-directory: ds-api-gateway
+      # run: |
+
+      # Build Client Service (à compléter)
+      # working-directory: ds-client-service
+      # run: |
+
+      # Build Account Service (à compléter)
+      # working-directory: ds-account-service
+      # run: |
+
+  deploy:
+    name: Deploy All Services
+    runs-on: ubuntu-latest
+    # définir la dépendance avec le job build
+    steps:
+      - name: Simulate deployment
+        run: |
+          # Ajouter les messages nécessaires
