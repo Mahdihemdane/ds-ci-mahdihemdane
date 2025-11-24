@@ -3,9 +3,9 @@ name: Build, Push and Deploy DS to DockerHub
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   push:
-    branches: [ master ]
+    branches: [ main ]
   issues:
     types: [opened, edited, closed]
   issue_comment:
@@ -88,6 +88,3 @@ jobs:
         run: |
           echo "demployment des service."
           echo "Deployé:"
-          echo " - $DOCKERHUB_USERNAME/$REPO_API:latest"
-          echo " - $DOCKERHUB_USERNAME/$REPO_CLIENT:latest"
-          echo " - $DOCKERHUB_USERNAME/$REPO_ACCOUNT:latest"
