@@ -37,22 +37,34 @@ jobs:
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ env.DOCKERHUB_TOKEN }}
 
-      # 4. Build et push API Gateway
-      - name: Build and Push API Gateway
+      # 4. Build API Gateway JAR et Docker
+      - name: Build API Gateway JAR
+        working-directory: ds-api-gateway
+        run: mvn clean package -DskipTests
+
+      - name: Build and Push API Gateway Docker
         working-directory: ds-api-gateway
         run: |
           docker build -t ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_API }}:latest .
           docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_API }}:latest
 
-      # 5. Build et push Client Service
-      - name: Build and Push Client Service
+      # 5. Build Client Service JAR et Docker
+      - name: Build Client Service JAR
+        working-directory: ds-client-service
+        run: mvn clean package -DskipTests
+
+      - name: Build and Push Client Service Docker
         working-directory: ds-client-service
         run: |
           docker build -t ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_CLIENT }}:latest .
           docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_CLIENT }}:latest
 
-      # 6. Build et push Account Service
-      - name: Build and Push Account Service
+      # 6. Build Account Service JAR et Docker
+      - name: Build Account Service JAR
+        working-directory: ds-account-service
+        run: mvn clean package -DskipTests
+
+      - name: Build and Push Account Service Docker
         working-directory: ds-account-service
         run: |
           docker build -t ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_ACCOUNT }}:latest .
@@ -64,5 +76,4 @@ jobs:
     needs: build  # Dépendance sur le job build
     steps:
       - name: Simulate deployment
-        run: |
-          echo "Simulating deployment of all services"
+        run: echo "Simulating deployment of all services"
